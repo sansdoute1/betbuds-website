@@ -68,7 +68,7 @@ def place_bet():
             'amount': amount
         }
         challenges.append(challenge_data)
-        return render_template('place_bet.html', success=True, challenge=challenge, created=True)
+return render_template('place_bet.html', success=True, created=True, challenge=challenge, challenge_data=challenge_data)
 
     return render_template('place_bet.html', success=False, created=False)
 
