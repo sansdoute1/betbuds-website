@@ -47,14 +47,15 @@
       </button>
     </form>
   </div>
-  {% if created %}
-<div class="mt-6 bg-blue-100 text-blue-700 p-4 rounded">
-  🎉 Challenge created and shared with: {{ challenge_data.friends | join(', ') }}
-</div>
+ {% if created %}
+  <div class="mt-6 bg-blue-100 text-blue-700 p-4 rounded">
+    🎉 Challenge for "{{ challenge }}" created!<br>
+    Shared with: {{ challenge_data.friends | join(', ') }}
+  </div>
 {% else %}
-<div class="mt-6 text-center">
-  <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700">Create Challenge</button>
-</div>
+  <div class="mt-6 text-center">
+    <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700">Create Challenge</button>
+  </div>
 {% endif %}
 
 </body>
