@@ -72,6 +72,14 @@ def place_bet():
 
     return render_template('place_bet.html', success=False, created=False)
 
+@app.route('/my-challenges')
+def my_challenges():
+    if 'user' not in session:
+        return redirect(url_for('login'))
+
+    user_challenges = [c for c in challenges if c['creator'] == session['user']]
+    return render_template('my_challenges.html', challenges=user_challenges)
+
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port, debug=True)
