@@ -5,6 +5,21 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 text-gray-900 font-sans">
+<!-- Navigation Bar -->
+<nav class="bg-white shadow px-6 py-4 flex justify-between items-center">
+  <div class="text-2xl font-bold text-primary">BetBuds</div>
+  <div class="flex justify-end space-x-4">
+    <a href="/" class="text-gray-700 hover:text-primary">Home</a>
+    {% if session['user'] %}
+      <a href="/my-challenges" class="text-gray-700 hover:text-primary">My Challenges</a>
+      <a href="/place-bet" class="bg-primary text-white px-4 py-2 rounded hover:bg-blue-700 transition">Place a Bet</a>
+      <a href="/logout" class="text-red-600 font-semibold hover:text-red-800">Logout</a>
+    {% else %}
+      <a href="/login" class="text-gray-700 hover:text-primary">Login</a>
+      <a href="/signup" class="text-gray-700 hover:text-primary">Sign Up</a>
+    {% endif %}
+  </div>
+</nav>
   <div class="max-w-2xl mx-auto mt-10 p-6 bg-white rounded-lg shadow">
     <h1 class="text-2xl font-bold mb-4">My Challenges</h1>
     {% if challenges %}
