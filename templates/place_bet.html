@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Place a Bet - BetBuds</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 text-gray-900 font-sans">
+
+  <!-- Navigation Bar -->
+  <nav class="bg-white shadow px-6 py-4 flex justify-between items-center">
+    <div class="text-2xl font-bold text-primary">BetBuds</div>
+    <div class="flex justify-end space-x-6">
+      <a href="/" class="text-gray-700 hover:text-primary">Home</a>
+      {% if session['user'] %}
+        <a href="/logout" class="text-red-600 font-semibold hover:text-red-800">Logout</a>
+      {% endif %}
+    </div>
+  </nav>
+
   <div class="max-w-xl mx-auto mt-16 p-6 bg-white rounded-lg shadow-md">
     <h1 class="text-3xl font-bold mb-6 text-center">Place a Bet</h1>
 
@@ -19,44 +31,38 @@
     <form method="POST">
       <div class="mb-4">
         <label class="block text-sm font-semibold mb-1">Challenge Name</label>
-        <input type="text" name="challenge" class="w-full px-4 py-2 border rounded" required />
+        <input type="text" name="challenge" class="w-full px-4 py-2 border rounded" required>
       </div>
-
       <div class="mb-4">
         <label class="block text-sm font-semibold mb-1">Goal</label>
         <textarea name="goal" class="w-full px-4 py-2 border rounded" required></textarea>
       </div>
-
       <div class="mb-4">
         <label class="block text-sm font-semibold mb-1">Timeline</label>
-        <input type="date" name="timeline" class="w-full px-4 py-2 border rounded" required />
+        <input type="date" name="timeline" class="w-full px-4 py-2 border rounded" required>
       </div>
-
       <div class="mb-4">
         <label class="block text-sm font-semibold mb-1">Invite Friends (Emails, comma-separated)</label>
-        <input type="text" name="friends" class="w-full px-4 py-2 border rounded" />
+        <input type="text" name="friends" class="w-full px-4 py-2 border rounded">
       </div>
-
       <div class="mb-6">
         <label class="block text-sm font-semibold mb-1">Bet Amount ($)</label>
-        <input type="number" name="amount" step="0.01" class="w-full px-4 py-2 border rounded" required />
+        <input type="number" name="amount" step="0.01" class="w-full px-4 py-2 border rounded" required>
       </div>
 
-      <button type="submit" class="bg-primary text-white px-6 py-2 rounded hover:bg-blue-700 transition">
-        Place Bet
-      </button>
+      <div class="text-center">
+        <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700">
+          Create Challenge
+        </button>
+      </div>
     </form>
-  </div>
- {% if created %}
-  <div class="mt-6 bg-blue-100 text-blue-700 p-4 rounded">
-    🎉 Challenge for "{{ challenge }}" created!<br>
-    Shared with: {{ challenge_data.friends | join(', ') }}
-  </div>
-{% else %}
-  <div class="mt-6 text-center">
-    <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700">Create Challenge</button>
-  </div>
-{% endif %}
 
+    {% if created %}
+      <div class="mt-6 bg-blue-100 text-blue-700 p-4 rounded">
+        🎉 Challenge for "{{ challenge }}" created!<br>
+        Shared with: {{ challenge_data.friends | join(', ') }}
+      </div>
+    {% endif %}
+  </div>
 </body>
 </html>
